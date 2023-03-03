@@ -1,9 +1,14 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from inference_onnx import IeltsONNXPredictor
+
 app = FastAPI(title="IELTS Scoring App")
 
-predictor = IeltsONNXPredictor()
+model_path_coherence = 'save_model/model_coherence.onnx'
+model_path_task = 'save_model/model_task.onnx'
+model_path_lexical = 'save_model/model_lexical.onnx'
+model_path_grammar = 'save_model/model_grammar.onnx'
+predictor = IeltsONNXPredictor(model_path_coherence, model_path_task, model_path_lexical, model_path_grammar)
 
 @app.get("/")
 
@@ -16,5 +21,5 @@ async def home_page():
 @app.get("/predict")
 async def predict(question: str, essay: str):
     input = 'CLS '+ question + ' SEP ' + essay + ' SEP'
-    predicted_task, predicted_coh = predictor.predict(essay, input)
-    return {"predicted_task": predicted_task, "predicted_coherence": predicted_coh}
+    pred_coh, pred_lexical,pred_grammar,  pred_task = predictor.predict(essay, input)
+    return {"predicted_coherence": pred_coh, "predicted_task": pred_lexical, "predicted_grammar": pred_grammar, "predicted_lexical": pred_task}
