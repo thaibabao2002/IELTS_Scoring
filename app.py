@@ -22,4 +22,4 @@ async def home_page():
 async def predict(question: str, essay: str):
     input = 'CLS '+ question + ' SEP ' + essay + ' SEP'
     pred_coh, pred_lexical,pred_grammar,  pred_task = predictor.predict(essay, input)
-    return {"predicted_coherence": pred_coh, "predicted_task": pred_lexical, "predicted_grammar": pred_grammar, "predicted_lexical": pred_task}
+    return {"predicted_coherence": pred_coh, "predicted_lexical": pred_lexical, "predicted_grammar": pred_grammar, "predicted_task": pred_task}
