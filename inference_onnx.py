@@ -2,7 +2,6 @@ import numpy as np
 import onnxruntime as ort
 from scipy.special import softmax
 from transformers import AutoTokenizer
-from utils import timing
 import torch
 
 class IeltsONNXPredictor:
@@ -16,7 +15,7 @@ class IeltsONNXPredictor:
         self.label_lexical = [4, 5, 6, 7, 8, 9]
         self.label_grammar = [4, 5, 6,7 ,8, 9]
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-    @timing
+   
     def predict(self, essay, input):
         encoder_essay = self.tokenizer(
             essay,
