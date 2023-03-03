@@ -1,6 +1,6 @@
 Tạo thư mục save_model
 
-Tải 2 model từ link này về:
+Tải 4 model từ link này về:
 
 https://drive.google.com/drive/folders/1LuvkBTK7UUVZkwfYmdAV5QtFGkgWaeAG?usp=sharing
 
